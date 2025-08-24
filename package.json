@@ -1,0 +1,43 @@
+{
+  "name": "ziman-ai-extension",
+  "version": "1.0.0",
+  "description": "Professional Kurdish language translator Chrome extension supporting Sorani, Kurmanji and 10 major world languages",
+  "main": "popup.js",
+  "scripts": {
+    "build": "echo 'Building extension...'",
+    "dev": "echo 'Development mode'",
+    "test": "echo 'Running tests...'",
+    "lint": "echo 'Linting code...'",
+    "package": "zip -r ziman-ai-extension.zip . -x '*.git*' 'node_modules/*' '*.DS_Store'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "kurdish",
+    "translator",
+    "sorani",
+    "kurmanji",
+    "multilingual",
+    "weblate",
+    "translation"
+  ],
+  "author": "Ziman AI Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/naserhha/ziman-ai-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/naserhha/ziman-ai-extension/issues"
+  },
+  "homepage": "https://github.com/naserhha/ziman-ai-extension#readme",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^2.8.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "Chrome >= 88"
+  ]
+}

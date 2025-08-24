@@ -1,0 +1,183 @@
+/* Content script styles for Ziman AI Translation Widget */
+#ziman-translation-widget {
+    position: fixed;
+    z-index: 10000;
+    width: 320px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    animation: ziman-slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+@keyframes ziman-slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.9) rotateX(-10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+    }
+}
+
+.ziman-header {
+    background: linear-gradient(135deg, #ffd700 0%, #007bff 100%);
+    color: white;
+    padding: 15px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ziman-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+.ziman-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.ziman-close::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+
+.ziman-close:hover::before {
+    transform: scale(1);
+}
+
+.ziman-close:hover {
+    transform: scale(1.1);
+}
+
+.ziman-close:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.ziman-content {
+    padding: 16px;
+}
+
+.ziman-original {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #495057;
+    border-left: 5px solid #007bff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.ziman-original::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, #ffd700, #007bff);
+}
+
+.ziman-translation {
+    background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #155724;
+    border-left: 5px solid #28a745;
+    min-height: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.ziman-translation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, #28a745, #20c997);
+}
+
+.ziman-loading {
+    text-align: center;
+    color: #6c757d;
+    font-size: 12px;
+    font-style: italic;
+    padding: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    #ziman-translation-widget {
+        width: 280px;
+        left: 10px !important;
+        right: 10px !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    #ziman-translation-widget {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    .ziman-original {
+        background: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    .ziman-translation {
+        background: #2f5a2f;
+        color: #c6f6d5;
+    }
+}

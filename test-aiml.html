@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziman AI - AIML API Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .test-input {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 5px solid #007bff;
+        }
+        .test-output {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 5px solid #28a745;
+            min-height: 60px;
+        }
+        .test-button {
+            background: linear-gradient(135deg, #007bff 0%, #0064ff 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+        .test-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .model-info {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #ffc107;
+        }
+        h1, h2 {
+            color: #007bff;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Ziman AI - AIML API Test</h1>
+    
+    <div class="test-section">
+        <h2>🔑 API Connection Test</h2>
+        <p>Test the connection to AIML API and verify your API key.</p>
+        <button class="test-button" onclick="testAPIKey()">Test API Key</button>
+        <button class="test-button" onclick="testConnection()">Test Connection</button>
+        <div id="connectionStatus"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🌍 Translation Test</h2>
+        <p>Test AI-powered translation using different language combinations.</p>
+        
+        <div class="test-input">
+            <strong>Source Language:</strong>
+            <select id="sourceLang">
+                <option value="en">English</option>
+                <option value="ku-sorani">Kurdish (Sorani)</option>
+                <option value="ku-kurmanji">Kurdish (Kurmanji)</option>
+                <option value="fa">Persian</option>
+                <option value="ar">Arabic</option>
+                <option value="tr">Turkish</option>
+            </select>
+            
+            <strong>Target Language:</strong>
+            <select id="targetLang">
+                <option value="ku-sorani">Kurdish (Sorani)</option>
+                <option value="en">English</option>
+                <option value="ku-kurmanji">Kurdish (Kurmanji)</option>
+                <option value="fa">Persian</option>
+                <option value="ar">Arabic</option>
+                <option value="tr">Turkish</option>
+            </select>
+            
+            <strong>Tone:</strong>
+            <select id="tone">
+                <option value="neutral">Neutral</option>
+                <option value="formal">Formal</option>
+                <option value="informal">Informal</option>
+            </select>
+        </div>
+        
+        <div class="test-input">
+            <strong>Input Text:</strong><br>
+            <textarea id="inputText" rows="3" style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #e9ecef;">Hello, how are you? My name is Naser.</textarea>
+        </div>
+        
+        <button class="test-button" onclick="testTranslation()">Translate with AI</button>
+        <button class="test-button" onclick="testBatchTranslation()">Batch Translate</button>
+        
+        <div class="test-output" id="translationOutput">
+            <em>Translation will appear here...</em>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🤖 AI Model Information</h2>
+        <p>Information about the AI models used for translation.</p>
+        <button class="test-button" onclick="showModelInfo()">Show Model Info</button>
+        <div id="modelInfo"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 API Usage</h2>
+        <p>Check your API usage and limits.</p>
+        <button class="test-button" onclick="checkUsage()">Check Usage</button>
+        <div id="usageInfo"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔧 Error Testing</h2>
+        <p>Test error handling and fallback mechanisms.</p>
+        <button class="test-button" onclick="testErrorHandling()">Test Error Handling</button>
+        <div id="errorInfo"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🧪 Model Testing</h2>
+        <p>Test individual AI models to find the best working one.</p>
+        <button class="test-button" onclick="testIndividualModels()">Test Individual Models</button>
+        <div id="modelTestResults"></div>
+    </div>
+
+    <script src="error-handler.js"></script>
+    <script src="aiml-api.js"></script>
+    
+    <script>
+        let aimlAPI = null;
+        let errorHandler = null;
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // Check if ErrorHandler is available
+                if (typeof ErrorHandler !== 'undefined') {
+                    errorHandler = new ErrorHandler();
+                    console.log('✅ Error Handler initialized');
+                } else {
+                    console.warn('⚠️ ErrorHandler not available, using basic error handling');
+                }
+                
+                // Initialize AIML API
+                if (typeof AIMLAPI !== 'undefined') {
+                    aimlAPI = new AIMLAPI();
+                    console.log('✅ AIML API initialized');
+                } else {
+                    console.error('❌ AIMLAPI not available');
+                }
+            } catch (error) {
+                console.error('❌ Failed to initialize:', error);
+            }
+        });
+
+        async function testAPIKey() {
+            const statusDiv = document.getElementById('connectionStatus');
+            statusDiv.innerHTML = '<div class="status info">Testing API key...</div>';
+            
+            try {
+                if (!aimlAPI) {
+                    statusDiv.innerHTML = '<div class="status error">AIML API not initialized</div>';
+                    return;
+                }
+                
+                const result = await aimlAPI.testAPIKey();
+                
+                if (result.valid) {
+                    statusDiv.innerHTML = `
+                        <div class="status success">
+                            ✅ ${result.message}<br>
+                            <small>Your API key is working correctly</small>
+                        </div>
+                    `;
+                } else {
+                    statusDiv.innerHTML = `
+                        <div class="status error">
+                            ❌ ${result.message}<br>
+                            <small>Please check your API key and plan</small>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ API key test failed<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function testConnection() {
+            const statusDiv = document.getElementById('connectionStatus');
+            statusDiv.innerHTML = '<div class="status info">Testing connection...</div>';
+            
+            try {
+                if (!aimlAPI) {
+                    throw new Error('AIML API not initialized');
+                }
+                
+                const result = await aimlAPI.testConnection();
+                
+                if (result.success) {
+                    statusDiv.innerHTML = `
+                        <div class="status success">
+                            ✅ ${result.message}<br>
+                            Test Translation: "${result.testTranslation}"<br>
+                            <small>Model: ${result.model || 'Unknown'}</small>
+                        </div>
+                    `;
+                } else {
+                    statusDiv.innerHTML = `
+                        <div class="status error">
+                            ❌ ${result.message}<br>
+                            Error: ${result.error}<br>
+                            <small>
+                                Possible solutions:<br>
+                                • Check your API key is correct<br>
+                                • Verify your account has sufficient credits<br>
+                                • Check if you're on the right plan<br>
+                                • Try refreshing the page
+                            </small>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Connection test failed<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function testTranslation() {
+            const outputDiv = document.getElementById('translationOutput');
+            const sourceLang = document.getElementById('sourceLang').value;
+            const targetLang = document.getElementById('targetLang').value;
+            const tone = document.getElementById('tone').value;
+            const inputText = document.getElementById('inputText').value.trim();
+            
+            if (!inputText) {
+                outputDiv.innerHTML = '<div class="status error">Please enter text to translate</div>';
+                return;
+            }
+            
+            outputDiv.innerHTML = '<div class="status info"><span class="loading"></span> Translating with AI...</div>';
+            
+            try {
+                if (!aimlAPI) {
+                    throw new Error('AIML API not initialized');
+                }
+                
+                const translation = await aimlAPI.translateText(inputText, sourceLang, targetLang, tone);
+                
+                if (translation) {
+                    outputDiv.innerHTML = `
+                        <div class="status success">
+                            <strong>AI Translation:</strong><br>
+                            ${translation}
+                        </div>
+                    `;
+                } else {
+                    outputDiv.innerHTML = '<div class="status error">No translation received</div>';
+                }
+            } catch (error) {
+                outputDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Translation failed<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function testBatchTranslation() {
+            const outputDiv = document.getElementById('translationOutput');
+            const sourceLang = document.getElementById('sourceLang').value;
+            const targetLang = document.getElementById('targetLang').value;
+            const tone = document.getElementById('tone').value;
+            
+            const testTexts = [
+                'Hello, how are you?',
+                'Thank you very much',
+                'Good morning, everyone',
+                'Have a nice day'
+            ];
+            
+            outputDiv.innerHTML = '<div class="status info"><span class="loading"></span> Batch translating...</div>';
+            
+            try {
+                if (!aimlAPI) {
+                    throw new Error('AIML API not initialized');
+                }
+                
+                const results = await aimlAPI.batchTranslate(testTexts, sourceLang, targetLang, tone);
+                
+                let output = '<div class="status success"><strong>Batch Translation Results:</strong><br><br>';
+                
+                results.forEach((result, index) => {
+                    if (result.success) {
+                        output += `<strong>${index + 1}.</strong> "${result.original}" → "${result.translated}"<br>`;
+                    } else {
+                        output += `<strong>${index + 1}.</strong> "${result.original}" → ❌ Error: ${result.error}<br>`;
+                    }
+                });
+                
+                output += '</div>';
+                outputDiv.innerHTML = output;
+                
+            } catch (error) {
+                outputDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Batch translation failed<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        function showModelInfo() {
+            const infoDiv = document.getElementById('modelInfo');
+            
+            if (!aimlAPI) {
+                infoDiv.innerHTML = '<div class="status error">AIML API not initialized</div>';
+                return;
+            }
+            
+            let output = '';
+            
+            Object.keys(aimlAPI.models).forEach(modelKey => {
+                const info = aimlAPI.getModelInfo(modelKey);
+                output += `
+                    <div class="model-info">
+                        <strong>${info.name}</strong><br>
+                        ${info.description}<br>
+                        <small>Max Tokens: ${info.maxTokens.toLocaleString()} | Languages: ${info.languages.join(', ')}</small>
+                    </div>
+                `;
+            });
+            
+            infoDiv.innerHTML = output;
+        }
+
+        async function checkUsage() {
+            const usageDiv = document.getElementById('usageInfo');
+            usageDiv.innerHTML = '<div class="status info">Checking usage...</div>';
+            
+            try {
+                if (!aimlAPI) {
+                    throw new Error('AIML API not initialized');
+                }
+                
+                const usage = await aimlAPI.getUsage();
+                
+                if (usage) {
+                    usageDiv.innerHTML = `
+                        <div class="status success">
+                            <strong>API Usage:</strong><br>
+                            <pre>${JSON.stringify(usage, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    usageDiv.innerHTML = '<div class="status info">Usage information not available</div>';
+                }
+            } catch (error) {
+                usageDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Failed to check usage<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function testErrorHandling() {
+            const errorDiv = document.getElementById('errorInfo');
+            
+            if (!errorHandler) {
+                errorDiv.innerHTML = '<div class="status error">Error Handler not available - using basic error handling</div>';
+                
+                // Test basic error handling
+                const testErrors = [
+                    new Error('Failed to fetch'),
+                    new Error('Extension context invalidated'),
+                    new Error('Content script not loaded'),
+                    new Error('message channel closed'),
+                    new Error('Unknown error occurred')
+                ];
+                
+                let output = '<div class="status info"><strong>Basic Error Handling Test Results:</strong><br><br>';
+                
+                testErrors.forEach((error, index) => {
+                    const userMessage = `Error ${index + 1}: ${error.message}`;
+                    output += `<strong>${index + 1}.</strong> ${userMessage}<br>`;
+                });
+                
+                output += '</div>';
+                errorDiv.innerHTML = output;
+                return;
+            }
+            
+            // Test different error types with ErrorHandler
+            const testErrors = [
+                new Error('Failed to fetch'),
+                new Error('Extension context invalidated'),
+                new Error('Content script not loaded'),
+                new Error('message channel closed'),
+                new Error('Unknown error occurred')
+            ];
+            
+            let output = '<div class="status info"><strong>Error Handling Test Results:</strong><br><br>';
+            
+            testErrors.forEach((error, index) => {
+                try {
+                    const userMessage = errorHandler.handleError(error, `Test ${index + 1}`);
+                    output += `<strong>${index + 1}.</strong> ${userMessage}<br>`;
+                } catch (handlerError) {
+                    output += `<strong>${index + 1}.</strong> ❌ Error handler failed: ${handlerError.message}<br>`;
+                }
+            });
+            
+            output += '</div>';
+            errorDiv.innerHTML = output;
+        }
+
+        async function testIndividualModels() {
+            const resultsDiv = document.getElementById('modelTestResults');
+            resultsDiv.innerHTML = '<div class="status info"><span class="loading"></span> Testing individual models...</div>';
+            
+            if (!aimlAPI) {
+                resultsDiv.innerHTML = '<div class="status error">AIML API not initialized</div>';
+                return;
+            }
+            
+            const testText = 'Hello, how are you?';
+            const sourceLang = 'en';
+            const targetLang = 'ku-sorani';
+            const tone = 'neutral';
+            
+            let output = '<div class="status info"><strong>Individual Model Test Results:</strong><br><br>';
+            let successCount = 0;
+            
+            for (const [modelKey, modelPath] of Object.entries(aimlAPI.models)) {
+                try {
+                    output += `<strong>${modelKey}:</strong> `;
+                    
+                    const systemPrompt = aimlAPI.createTranslationPrompt(sourceLang, targetLang, tone);
+                    const response = await aimlAPI.callChatCompletion(modelPath, systemPrompt, testText);
+                    
+                    if (response && response.content) {
+                        const translation = aimlAPI.cleanTranslation(response.content);
+                        output += `✅ "${translation}"<br>`;
+                        successCount++;
+                    } else {
+                        output += `❌ No response<br>`;
+                    }
+                    
+                } catch (error) {
+                    output += `❌ ${error.message}<br>`;
+                }
+                
+                // Add small delay between requests
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            
+            output += `<br><strong>Summary:</strong> ${successCount}/${Object.keys(aimlAPI.models).length} models working`;
+            output += '</div>';
+            
+            resultsDiv.innerHTML = output;
+        }
+    </script>
+</body>
+</html>

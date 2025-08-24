@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziman AI - Kurdish Translator</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ziman AI</h1>
+            <p>Kurdish Translator & Multilingual Ai Tool</p>
+            <div class="header-stats">
+                <span class="stat-item">🌍 12 Languages</span>
+                <span class="stat-item">⚡ Fast</span>
+                <span class="stat-item">🔒 Secure</span>
+            </div>
+            
+        
+        </header>
+        
+        <div class="language-selector">
+            <div class="lang-group">
+                <label>From:</label>
+                <select id="sourceLang">
+                    <option value="auto">Auto Detect</option>
+                    <option value="ku-sorani">Kurdish (Sorani)</option>
+                    <option value="ku-kurmanji">Kurdish (Kurmanji)</option>
+                    <option value="en">English</option>
+                    <option value="ar">Arabic</option>
+                    <option value="fa">Persian</option>
+                    <option value="tr">Turkish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="es">Spanish</option>
+                    <option value="ru">Russian</option>
+                    <option value="zh">Chinese</option>
+                    <option value="ja">Japanese</option>
+                </select>
+            </div>
+            
+            <button id="swapBtn" class="swap-btn hover-scale">⇄</button>
+            
+            <div class="lang-group">
+                <label>To:</label>
+                <select id="targetLang">
+                    <option value="en">English</option>
+                    <option value="ku-sorani">Kurdish (Sorani)</option>
+                    <option value="ku-kurmanji">Kurdish (Kurmanji)</option>
+                    <option value="ar">Arabic</option>
+                    <option value="fa">Persian</option>
+                    <option value="tr">Turkish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="es">Spanish</option>
+                    <option value="ru">Russian</option>
+                    <option value="zh">Chinese</option>
+                    <option value="ja">Japanese</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="tone-selector">
+            <label>Tone:</label>
+            <select id="tone">
+                <option value="neutral">🎯 Neutral</option>
+                <option value="formal">👔 Formal</option>
+                <option value="informal">😊 Informal</option>
+            </select>
+            <div class="tone-info">
+                <small>Select the appropriate tone for your translation</small>
+            </div>
+        </div>
+        
+        <div class="api-settings">
+            <label>🤖 AI API Key:</label>
+            <input type="password" id="apiKey" placeholder="Enter your AI API key (optional)">
+            <div class="api-info">
+                <small>Add your own API key to use all AI chatbots (OpenAI, Anthropic, Google, etc.)</small>
+            </div>
+            <button id="saveApiKey" class="save-btn">💾 Save API Key</button>
+            <button id="testApiKey" class="test-btn">🧪 Test Connection</button>
+        </div>
+        
+        <div class="text-area">
+            <textarea id="sourceText" placeholder="Enter text to translate..."></textarea>
+            <div class="text-controls">
+                <button id="clearBtn">Clear</button>
+                <button id="pasteBtn">Paste</button>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="phonetic"> Phonetic
+                </label>
+            </div>
+        </div>
+        
+        <button id="translateBtn" class="translate-btn ripple">Translate</button>
+        
+        <div class="result-area">
+            <div id="resultText" class="result-text"></div>
+            <div class="result-controls">
+                <button id="copyBtn" class="hover-lift">Copy</button>
+                <button id="speakBtn" class="hover-lift">🔊</button>
+            </div>
+        </div>
+        
+        <div class="quick-actions">
+            <button id="pageTranslateBtn" class="hover-lift">Translate Page</button>
+            <button id="selectionBtn" class="hover-lift">Translate Selection</button>
+        </div>
+        <div class="developer-info">
+            <span>👨‍💻 Developed by Mohammad Nasser Haji Hashemabad</span>
+        </div>
+    </div>
+    
+    <script src="error-handler.js"></script>
+    <script src="aiml-api.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

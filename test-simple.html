@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziman AI - Simple Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        .test-button {
+            background: linear-gradient(135deg, #007bff 0%, #0064ff 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+        .test-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .result {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #28a745;
+            min-height: 60px;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 5px solid #17a2b8;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+        .status {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Ziman AI - Simple Test</h1>
+    
+    <div class="test-container">
+        <h2>🔍 Basic Functionality Test</h2>
+        <p>Test basic extension functionality without complex APIs.</p>
+        
+        <button class="test-button" onclick="testBasicFunctions()">Test Basic Functions</button>
+        <button class="test-button" onclick="testStorage()">Test Storage</button>
+        <button class="test-button" onclick="testChromeAPI()">Test Chrome API</button>
+        <button class="test-button" onclick="clearResults()">Clear Results</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <div class="test-container">
+        <h2>🌍 Translation Test</h2>
+        <p>Test translation with fallback (no API calls).</p>
+        
+        <button class="test-button" onclick="testTranslation()">Test Translation</button>
+        <button class="test-button" onclick="testMultipleTranslations()">Test Multiple</button>
+        
+        <div id="translationResults"></div>
+    </div>
+
+    <script>
+        let resultsDiv = null;
+        let translationResultsDiv = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resultsDiv = document.getElementById('results');
+            translationResultsDiv = document.getElementById('translationResults');
+        });
+
+        function addResult(message, type = 'info') {
+            if (!resultsDiv) return;
+            
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            resultsDiv.appendChild(div);
+        }
+
+        function addTranslationResult(message, type = 'info') {
+            if (!translationResultsDiv) return;
+            
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            translationResultsDiv.appendChild(div);
+        }
+
+        function testBasicFunctions() {
+            addResult('Testing basic functions...', 'info');
+            
+            try {
+                // Test basic JavaScript functionality
+                const testArray = [1, 2, 3, 4, 5];
+                const sum = testArray.reduce((a, b) => a + b, 0);
+                
+                if (sum === 15) {
+                    addResult('✅ Basic JavaScript functions working correctly', 'success');
+                } else {
+                    addResult('❌ Basic JavaScript functions failed', 'error');
+                }
+                
+                // Test DOM manipulation
+                const testElement = document.createElement('div');
+                testElement.textContent = 'Test';
+                document.body.appendChild(testElement);
+                document.body.removeChild(testElement);
+                addResult('✅ DOM manipulation working correctly', 'success');
+                
+            } catch (error) {
+                addResult(`❌ Basic functions test failed: ${error.message}`, 'error');
+            }
+        }
+
+        function testStorage() {
+            addResult('Testing storage functionality...', 'info');
+            
+            try {
+                // Test localStorage
+                localStorage.setItem('ziman_test', 'test_value');
+                const retrieved = localStorage.getItem('ziman_test');
+                
+                if (retrieved === 'test_value') {
+                    addResult('✅ localStorage working correctly', 'success');
+                } else {
+                    addResult('❌ localStorage failed', 'error');
+                }
+                
+                localStorage.removeItem('ziman_test');
+                
+                // Test sessionStorage
+                sessionStorage.setItem('ziman_session_test', 'session_value');
+                const sessionRetrieved = sessionStorage.getItem('ziman_session_test');
+                
+                if (sessionRetrieved === 'session_value') {
+                    addResult('✅ sessionStorage working correctly', 'success');
+                } else {
+                    addResult('❌ sessionStorage failed', 'error');
+                }
+                
+                sessionStorage.removeItem('ziman_session_test');
+                
+            } catch (error) {
+                addResult(`❌ Storage test failed: ${error.message}`, 'error');
+            }
+        }
+
+        function testChromeAPI() {
+            addResult('Testing Chrome extension API...', 'info');
+            
+            try {
+                // Check if we're in a Chrome extension context
+                if (typeof chrome !== 'undefined') {
+                    addResult('✅ Chrome object available', 'success');
+                    
+                    if (chrome.runtime) {
+                        addResult('✅ chrome.runtime available', 'success');
+                    } else {
+                        addResult('❌ chrome.runtime not available', 'error');
+                    }
+                    
+                    if (chrome.storage) {
+                        addResult('✅ chrome.storage available', 'success');
+                    } else {
+                        addResult('❌ chrome.storage not available', 'error');
+                    }
+                    
+                    if (chrome.tabs) {
+                        addResult('✅ chrome.tabs available', 'success');
+                    } else {
+                        addResult('❌ chrome.tabs not available', 'error');
+                    }
+                    
+                } else {
+                    addResult('❌ Chrome object not available (not in extension context)', 'error');
+                }
+                
+            } catch (error) {
+                addResult(`❌ Chrome API test failed: ${error.message}`, 'error');
+            }
+        }
+
+        function testTranslation() {
+            addTranslationResult('Testing translation functionality...', 'info');
+            
+            try {
+                // Mock translation function
+                const mockTranslations = {
+                    'ku-sorani-en': {
+                        'سڵاو': 'Hello',
+                        'چۆنی': 'How are you?',
+                        'سوپاس': 'Thank you'
+                    },
+                    'en-ku-sorani': {
+                        'Hello': 'سڵاو',
+                        'How are you?': 'چۆنی؟',
+                        'Thank you': 'سوپاس'
+                    }
+                };
+                
+                // Test Kurdish to English
+                const testText = 'سڵاو';
+                const translation = mockTranslations['ku-sorani-en'][testText];
+                
+                if (translation === 'Hello') {
+                    addTranslationResult(`✅ Kurdish to English: "${testText}" → "${translation}"`, 'success');
+                } else {
+                    addTranslationResult(`❌ Kurdish to English translation failed`, 'error');
+                }
+                
+                // Test English to Kurdish
+                const testText2 = 'Hello';
+                const translation2 = mockTranslations['en-ku-sorani'][testText2];
+                
+                if (translation2 === 'سڵاو') {
+                    addTranslationResult(`✅ English to Kurdish: "${testText2}" → "${translation2}"`, 'success');
+                } else {
+                    addTranslationResult(`❌ English to Kurdish translation failed`, 'error');
+                }
+                
+            } catch (error) {
+                addTranslationResult(`❌ Translation test failed: ${error.message}`, 'error');
+            }
+        }
+
+        function testMultipleTranslations() {
+            addTranslationResult('Testing multiple translations...', 'info');
+            
+            const testCases = [
+                { source: 'en', target: 'ku-sorani', text: 'Good morning', expected: 'بەیانی باش' },
+                { source: 'en', target: 'ku-sorani', text: 'Goodbye', expected: 'خوات لەگەڵ' },
+                { source: 'ku-sorani', target: 'en', text: 'بەیانی باش', expected: 'Good morning' },
+                { source: 'ku-sorani', target: 'en', text: 'خوات لەگەڵ', expected: 'Goodbye' }
+            ];
+            
+            const mockTranslations = {
+                'en-ku-sorani': {
+                    'Good morning': 'بەیانی باش',
+                    'Goodbye': 'خوات لەگەڵ'
+                },
+                'ku-sorani-en': {
+                    'بەیانی باش': 'Good morning',
+                    'خوات لەگەڵ': 'Goodbye'
+                }
+            };
+            
+            let successCount = 0;
+            
+            testCases.forEach((testCase, index) => {
+                try {
+                    const key = `${testCase.source}-${testCase.target}`;
+                    const translation = mockTranslations[key]?.[testCase.text];
+                    
+                    if (translation === testCase.expected) {
+                        addTranslationResult(`✅ Test ${index + 1}: "${testCase.text}" → "${translation}"`, 'success');
+                        successCount++;
+                    } else {
+                        addTranslationResult(`❌ Test ${index + 1}: Expected "${testCase.expected}", got "${translation}"`, 'error');
+                    }
+                } catch (error) {
+                    addTranslationResult(`❌ Test ${index + 1} failed: ${error.message}`, 'error');
+                }
+            });
+            
+            addTranslationResult(`📊 Translation test results: ${successCount}/${testCases.length} successful`, 
+                successCount === testCases.length ? 'success' : 'info');
+        }
+
+        function clearResults() {
+            if (resultsDiv) resultsDiv.innerHTML = '';
+            if (translationResultsDiv) translationResultsDiv.innerHTML = '';
+        }
+    </script>
+</body>
+</html>

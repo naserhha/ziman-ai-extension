@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziman AI Debug Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-text {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Ziman AI Debug Page</h1>
+    
+    <div class="instructions">
+        <strong>برای تست اکستنشن:</strong>
+        <ol>
+            <li>اکستنشن را در کروم نصب کنید</li>
+            <li>این صفحه را ریفرش کنید</li>
+            <li>متن زیر را انتخاب کنید</li>
+            <li>راست کلیک کنید و "Translate with Ziman AI" را انتخاب کنید</li>
+        </ol>
+    </div>
+
+    <div class="test-text">
+        <strong>متن کردی برای تست:</strong><br>
+        سڵاو، چۆنی؟ من ناوی من ناسەرە
+    </div>
+
+    <div class="test-text">
+        <strong>English text for testing:</strong><br>
+        Hello, how are you? My name is Naser
+    </div>
+
+    <div class="test-text">
+        <strong>متن فارسی برای تست:</strong><br>
+        سلام، چطوری؟ اسم من ناصر است
+    </div>
+
+    <script>
+        // Debug script to check if content script is loaded
+        console.log('Debug page loaded');
+        
+        // Check if content script is working
+        setTimeout(() => {
+            if (document.getElementById('ziman-translation-widget')) {
+                console.log('✅ Ziman AI content script is loaded');
+            } else {
+                console.log('❌ Ziman AI content script is not loaded');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

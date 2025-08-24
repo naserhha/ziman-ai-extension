@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Ziman AI - Kurdish Translator & Multilingual Tool",
+  "version": "1.0.0",
+  "author": "Mohammad Nasser Haji Hashemabad (Nasser Hashemabadi) - Blockchain Tools & Smart Contracts Developer",
+  "description": "Professional Kurdish language translator supporting Sorani, Kurmanji and 10 major world languages. Developed by Mohammad Nasser Haji Hashemabad (Nasser Hashemabadi) - Blockchain & Smart Contracts Developer.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "tabs",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://hosted.weblate.org/*",
+    "https://api.aimlapi.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Ziman AI - Kurdish Translator",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["error-handler.js", "aiml-api.js", "content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
