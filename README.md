@@ -18,10 +18,6 @@ Kürtçe dilinin (Sorani ve Kurmanci lehçeleri) ve 10 ana dünya dilinin profes
 
 ئەکستەنشنێکی کرۆمی پێشکەوتوو بۆ وەرگەرکردنی پڕۆفیشناڵی زمانی کوردی (دەڤۆکەکانی سۆرانی و کورمانجی) و ١٠ زمانی سەرەکی جیھان.
 
-## 🌍 Ziman AI - کوردی وەرگەر و ئەلەڤی چەندزمانی
-
-ئەکستەنشنێکی کرۆمی پێشکەوتوو بۆ وەرگەرکردنی پڕۆفیشناڵی زمانی کوردی (دەڤۆکەکانی سۆرانی و کورمانجی) و ١٠ زمانی سەرەکی جیھان.
-
 ## 🌍 Ziman AI - Kurdî Werger û Alavê Çendzimanî
 
 Ekstensiyoneke Chrome ya pêşketî ji bo wergera profesyonel a zimanê kurdî (devokên soranî û kurmancî) û 10 zimanên sereke yên cîhanê.
