@@ -629,7 +629,7 @@ class CustomTranslationAPI extends WeblateAPI {
 
 ## 📞 پشتیبانی
 
-- **ایمیل**: support@ziman-ai.com
+- **ایمیل**: info@mohammadnasser.com
 - **گیت‌هاب**: [Issues](https://github.com/naserhha/ziman-ai-extension/issues)
 - **مستندات**: [Wiki](https://github.com/naserhha/ziman-ai-extension/wiki)
 
