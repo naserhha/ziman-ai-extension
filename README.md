@@ -404,7 +404,7 @@ const baseUrl = 'https://api.aimlapi.com/v1';
 
 ```javascript
 // تنظیمات Weblate API
-const apiKey = 'wlu_BMlpBPsGj2LjfiqoqYz7nO8ajHJlIHVfK5w7';
+const apiKey = 'wlu_BMlpBPsGj2LjfiqoqYz7nO********VfK5w7';
 const baseUrl = 'https://hosted.weblate.org/api/';
 ```
 
