@@ -71,7 +71,7 @@ async function handleWeblateAPI(request, sendResponse) {
         
         // Weblate API endpoint for translation
         const apiUrl = 'https://hosted.weblate.org/api/';
-        const apiKey = 'wlu_BMlpBPsGj2LjfiqoqYz7nO********VfK5w7';
+        const apiKey = 'apikey';
         
         // Search for existing translations
         const searchUrl = `${apiUrl}units/?q=${encodeURIComponent(text)}&source_language=${sourceLang}&target_language=${targetLang}`;
