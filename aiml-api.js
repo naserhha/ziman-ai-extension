@@ -6,7 +6,7 @@
 
 class AIMLAPI {
     constructor() {
-        this.apiKey = '6e06e26fb9d1******263c4f8a1d3912b';
+        this.apiKey = '';
         this.baseUrl = 'https://api.aimlapi.com/v1';
         this.models = {
             // Free tier models (more likely to work)
