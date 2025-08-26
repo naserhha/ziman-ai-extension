@@ -5,7 +5,7 @@
 
 class WeblateAPI {
     constructor() {
-        this.apiKey = 'wlu_BMlpBPsGj2LjfiqoqYz7nO8ajHJlIHVfK5w7';
+        this.apiKey = 'apikey';
         this.baseUrl = 'https://hosted.weblate.org/api/';
         this.headers = {
             'Authorization': `Token ${this.apiKey}`,
