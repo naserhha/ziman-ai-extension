@@ -10,19 +10,19 @@ A powerful Chrome extension for professional Kurdish language translation (Soran
 
 یک افزونه کروم پیشرفته برای ترجمه حرفه‌ای زبان کردی (لهجه‌های سورانی و کرمانجی) و ۱۰ زبان اصلی جهان.
 
-## 🌍 Ziman AI - أداة الترجمة الكردية ومتعددة اللغات
+## Ziman AI - أداة الترجمة الكردية ومتعددة اللغات
 
 إضافة متصفح كروم متقدمة للترجمة الاحترافية للغة الكردية (لهجتي السورانية والكورمانجية) و 10 لغات رئيسية في العالم.
 
-## 🌍 Ziman AI - Kürtçe Çeviri ve Çok Dilli Araç
+## Ziman AI - Kürtçe Çeviri ve Çok Dilli Araç
 
 Kürtçe dilinin (Sorani ve Kurmanci lehçeleri) ve 10 ana dünya dilinin profesyonel çevirisi için gelişmiş bir Chrome uzantısı.
 
-## 🌍 Ziman AI - کوردی وەرگەر و ئەلەڤی چەندزمانی
+## Ziman AI - کوردی وەرگەر و ئەلەڤی چەندزمانی
 
 ئەکستەنشنێکی کرۆمی پێشکەوتوو بۆ وەرگەرکردنی پڕۆفیشناڵی زمانی کوردی (دەڤۆکەکانی سۆرانی و کورمانجی) و ١٠ زمانی سەرەکی جیھان.
 
-## 🌍 Ziman AI - Kurdî Werger û Alavê Çendzimanî
+## Ziman AI - Kurdî Werger û Alavê Çendzimanî
 
 Ekstensiyoneke Chrome ya pêşketî ji bo wergera profesyonel a zimanê kurdî (devokên soranî û kurmancî) û 10 zimanên sereke yên cîhanê.
 
