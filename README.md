@@ -1,6 +1,9 @@
 # Ziman AI - Kurdish Translator & Multilingual Tool
 
 A powerful Chrome extension for professional Kurdish language translation (Sorani and Kurmanji dialects) and 10 major world languages.
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-blue?logo=google-chrome)](https://chromewebstore.google.com/detail/ziman-ai-kurdish-translat/cjmmnobnimheoeeojobgfkgbdbohcjkn)
+[![Open Source](https://img.shields.io/badge/Open-Source-green?logo=github)](https://github.com/naserhha/ziman-ai-extension)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## 🌍 Ziman AI - ابزار ترجمه کردی و چندزبانه
 
